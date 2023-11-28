@@ -4,14 +4,11 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -28,8 +25,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import con.fire.okcompose.base.OKComponentActivity
 import con.fire.okcompose.ui.theme.OkComposeTheme
-import kotlin.math.log
 
+//o基础 https://mp.weixin.qq.com/s/G8cNMJXZJpEpxyEzQE2s1g
+//【文末有惊喜！】Jetpack Compose布局优化实践  https://mp.weixin.qq.com/s/udysT9h84ZgXd8pOIbgnzw
+//Compose自定义布局的使用 https://mp.weixin.qq.com/s/_K5y35bq2aNEfTocE5ZnLg
+//Compose 1.5 发布，性能大幅提升？ https://mp.weixin.qq.com/s/607ClCLEQqFayKtBjLoi2A
 class MainActivity : OKComponentActivity() {
     var TAG: String = "Ma2in"
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +40,7 @@ class MainActivity : OKComponentActivity() {
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
 //                    Greeting("ok")
+                    greeting1(name = "VSL")
 //                    Counter()
                     var number by remember {
                         mutableStateOf(0)
@@ -51,12 +52,29 @@ class MainActivity : OKComponentActivity() {
                         CounterAdd(number, onClickValue = {
                             number += 10
                         })
+                        greeting1(name = "li12")
                     }
                 }
             }
         }
     }
 }
+
+@Composable
+fun greeting1(name: String) {
+    Column() {
+        Text(text = "helll $name")
+        Text(text = "first Compose De,",
+            modifier = Modifier
+                .padding(10.dp)
+                .background(Color.Red)
+                .clickable {
+
+                })
+    }
+
+}
+
 
 @Preview(showBackground = true)
 @Composable
